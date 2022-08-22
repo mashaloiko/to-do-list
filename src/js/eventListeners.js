@@ -1,6 +1,7 @@
-import { input, addBtn, list } from './nodes.js';
+import { input, addBtn, list, changeBtn } from './nodes.js';
 import { todos } from './initialRender.js';
 import { createToDo } from './toDoCreators.js';
+// import { flickr } from './flickrAPI.js';
 
 export function eventListeners() {
     input.addEventListener ('input', (event) => {
@@ -46,5 +47,28 @@ export function eventListeners() {
             }
             default: break;
         }
+    });
+    changeBtn.addEventListener('click', () => {
+        const flickr = {
+            key: '3352b173d96c26bb29a0f24c4ce50065',
+            url: 'https://www.flickr.com/',
+            getRequestUrl(tags) {
+                return `${this.url}/services/rest/?method=flickr.photos.search&api_key=${this.key}&tags=${tags}&tag_mode=all&extras=url_h&format=json&nojsoncallback=1`;
+            },
+        };
+        const tags = 'morning, day, evening, night';
+        fetch(flickr.getRequestUrl(tags))
+            .then(response => {
+                if (response.ok) {
+                    return response.json();
+                } else {
+                    return body.style.backgroundColor = '#pink';
+                }
+            })
+            .then(data => {
+                const { photo: images } = data.photos;
+                console.log(images);
+                document.body.style.backgroundImage = `url('${images[99].url_h}')`;
+            });
     });
 };
