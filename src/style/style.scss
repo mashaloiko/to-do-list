@@ -3,9 +3,9 @@
     padding: 0;
     box-sizing: border-box;
 }
-// body {
-//     background-color: rgb(226, 147, 224);
-// }
+body {
+    transition: all 0.3s linear;
+}
 .container {
     max-width: 1170px;
     width: 100%;
@@ -164,22 +164,6 @@
             background-color: rgb(203, 153, 153);
         }
     }
-    &__label {
-        flex: 1 1 0;
-        line-height: 15px;
-    }
-    &__date {
-        flex: 1 1 0;
-    }
-    &__remove {
-        transition: all 0.3s linear;
-        &:hover {
-            color: rgb(248, 225, 225);
-        }
-        &:active {
-            background-color: rgb(203, 153, 153);
-        }
-    }
     &__buttons {
         margin-bottom: 30px;
         display: flex;
@@ -209,6 +193,8 @@
     }
     &__list {
         text-align: left;
+        display: flex;
+        flex-direction: column;
     }
     &__item {
         width: 100%;
@@ -229,6 +215,20 @@
     &__checkbox {
         margin-right: 15px;
         cursor: pointer;
+        position: absolute;
+        z-index: -1;
+        opacity: 0;
+    }
+    &__label {
+        flex: 1 1 0;
+        margin-right: 10px;
+    }
+    &__desc {
+        max-width: 400px;
+        width: 100%;
+    }
+    &__date {
+        flex: 1 1 0;
     }
     &__remove {
         max-width: 25px;
@@ -239,6 +239,13 @@
         font-weight: 600;
         font-size: 15px;
         font-family: 'Lily Script One', cursive;
+        transition: all 0.3s linear;
+        &:hover {
+            color: rgb(248, 225, 225);
+        }
+        &:active {
+            background-color: rgb(203, 153, 153);
+        }
     }
 }
 .completed {

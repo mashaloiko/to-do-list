@@ -1,4 +1,4 @@
-import { input, addBtn, list, changeBtn } from './nodes.js';
+import { input, addBtn, list, changeBtn, tasks, filterNew, filterOld, filterCompleted, filterUncompleted } from './nodes.js';
 import { todos } from './initialRender.js';
 import { createToDo } from './toDoCreators.js';
 // import { flickr } from './flickrAPI.js';
@@ -48,6 +48,7 @@ export function eventListeners() {
             default: break;
         }
     });
+
     changeBtn.addEventListener('click', () => {
         const flickr = {
             key: '3352b173d96c26bb29a0f24c4ce50065',
@@ -56,19 +57,76 @@ export function eventListeners() {
                 return `${this.url}/services/rest/?method=flickr.photos.search&api_key=${this.key}&tags=${tags}&tag_mode=all&extras=url_h&format=json&nojsoncallback=1`;
             },
         };
-        const tags = 'morning, day, evening, night';
+        const time = new Date();
+        time.getHours;
+        let tags;
+        if (time[0] <= 5) {
+            tags = 'night, stars, moon, summer';
+        } else if (time[0] > 5 && time[0] <= 11) {
+            tags = 'morning, sun, alarm';
+        } else if (time[0] > 11 && time[0] <= 18) {
+            tags = 'day, mountains';
+        } else {
+            tags = 'evening, sunset';
+        };
         fetch(flickr.getRequestUrl(tags))
             .then(response => {
-                if (response.ok) {
+                if (response.ok && response.status === 200) {
                     return response.json();
                 } else {
-                    return body.style.backgroundColor = '#pink';
-                }
+                    return document.body.style.background = 'pink';
+                };
             })
             .then(data => {
+                console.log(data);
                 const { photo: images } = data.photos;
                 console.log(images);
-                document.body.style.backgroundImage = `url('${images[99].url_h}')`;
+                let id = 0;
+                const img = new Image();
+                img.src = images[id].url_h;
+                img.addEventListener('load', () => {
+                    document.body.style.backgroundImage = `url('${images[id].url_h}')`;
+                });
+                img.addEventListener('error', () => {
+                    document.body.style.background = `pink`;
+                });
+                id++;
             });
     });
+
+    filterNew.addEventListener('click', () => {
+        tasks.forEach((task) => {
+            task.style.order = '0';
+        });
+        list.style.flexDirection = 'column-reverse';
+    });
+
+    filterOld.addEventListener('click', () => {
+        tasks.forEach((task) => {
+            task.style.order = '0';
+        });
+        list.style.flexDirection = 'column';
+    });
+
+    filterCompleted.addEventListener('click', () => {
+        list.style.flexDirection = 'column';
+        tasks.forEach((task) => {
+            if (!task.className.contains('completed')) {
+                task.style.order = '2';
+            } else {
+                task.style.order = '1';
+            };
+        });
+    });
+
+    filterUncompleted.addEventListener('click', () => {
+        list.style.flexDirection = 'column';
+        tasks.forEach((task) => {
+            if (!task.className.contains('completed')) {
+                task.style.order = '1';
+            } else {
+                task.style.order = '2';
+            };
+        });
+    })
 };

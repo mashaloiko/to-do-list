@@ -17,13 +17,15 @@ export function createToDo(id, description = '', isCompleted, date) {
     const label = createElement('label', 'tasks__label');
     const input = createElement('input', 'tasks__checkbox', 'mark');
     const button = createElement('button', 'tasks__remove', 'remove');
-    const span = createElement('span', 'tasks__date');
+    const spanDate = createElement('span', 'tasks__date');
+    const desc = createElement('p', 'tasks__desc');
 
     li.className = isCompleted ? 'tasks__item completed' : 'tasks__item';
-    span.append(date);
-    li.append(label, span, button);
+    spanDate.append(date);
+    li.append(label, spanDate, button);
     li.dataset.id = id;
-    label.append(input, description);
+    desc.append(description);
+    label.append(input, desc);
     input.type = 'checkbox';
     input.checked = isCompleted;
     button.append('X');
