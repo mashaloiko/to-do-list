@@ -12,4 +12,3 @@ export const filterNew = document.querySelector('#new');
 export const filterOld = document.querySelector('#old');
 export const filterCompleted = document.querySelector('#completed');
 export const filterUncompleted = document.querySelector('#uncompleted');
-export const tasks = document.querySelectorAll('.tasks__item');

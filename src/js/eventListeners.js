@@ -1,4 +1,4 @@
-import { input, addBtn, list, changeBtn, tasks, filterNew, filterOld, filterCompleted, filterUncompleted } from './nodes.js';
+import { input, addBtn, list, changeBtn, filterNew, filterOld, filterCompleted, filterUncompleted } from './nodes.js';
 import { todos } from './initialRender.js';
 import { createToDo } from './toDoCreators.js';
 // import { flickr } from './flickrAPI.js';
@@ -95,6 +95,7 @@ export function eventListeners() {
     });
 
     filterNew.addEventListener('click', () => {
+        const tasks = list.querySelectorAll('.tasks__item');
         tasks.forEach((task) => {
             task.style.order = '0';
         });
@@ -102,6 +103,7 @@ export function eventListeners() {
     });
 
     filterOld.addEventListener('click', () => {
+        const tasks = list.querySelectorAll('.tasks__item');
         tasks.forEach((task) => {
             task.style.order = '0';
         });
@@ -110,8 +112,9 @@ export function eventListeners() {
 
     filterCompleted.addEventListener('click', () => {
         list.style.flexDirection = 'column';
+        const tasks = list.querySelectorAll('.tasks__item');
         tasks.forEach((task) => {
-            if (!task.className.contains('completed')) {
+            if (!task.classList.contains('completed')) {
                 task.style.order = '2';
             } else {
                 task.style.order = '1';
@@ -120,9 +123,10 @@ export function eventListeners() {
     });
 
     filterUncompleted.addEventListener('click', () => {
+        const tasks = list.querySelectorAll('.tasks__item');
         list.style.flexDirection = 'column';
         tasks.forEach((task) => {
-            if (!task.className.contains('completed')) {
+            if (!task.classList.contains('completed')) {
                 task.style.order = '1';
             } else {
                 task.style.order = '2';
