@@ -5,6 +5,7 @@
 }
 body {
     transition: all 0.3s linear;
+    background-color: pink;
 }
 .container {
     max-width: 1170px;
@@ -15,6 +16,9 @@ body {
 .header {
     padding: 15px 0;
     margin-bottom: 30px;
+    @media (max-width: 767px) {
+        margin-bottom: 20px;
+    }
     &__container {
         display: flex;
         justify-content: space-between;
@@ -22,28 +26,33 @@ body {
     }
     &__wrap {
         flex: 1 1 0;
+        display: flex;
+        align-items: center;
     }
     &__time {
         margin-right: 20px;
         font-family: 'Ibarra Real Nova', serif;
         font-weight: 700;
-        font-size: 20px;
+        font-size: 25px;
         background-color: rgba(255, 255, 255, 0.55);
         border-radius: 5px;
         padding: 5px 10px;
+        @media (max-width: 767px) {
+            font-size: 20px;
+        }
     }
     &__btn {
         height: 100%;
         width: 100%;
-        max-width: 50px;
-        line-height: 10px;
-        padding: 13px 0;
+        max-width: 40px;
+        padding: 20px 0;
         background-color: rgba(255, 255, 255, 0.55);
+        background-image: url(../media/repeat.svg);
+        background-repeat: no-repeat;
+        background-size: contain;
+        background-position: center center;
         border: none;
         border-radius: 5px;
-        font-family: 'Ibarra Real Nova', serif;
-        font-weight: 700;
-        font-size: 15px;
         cursor: pointer;
         transition: all 0.3s linear;
         &:hover {
@@ -51,6 +60,10 @@ body {
         }
         &:active {
             background-color: rgb(203, 153, 153);
+        }
+        @media (max-width: 767px) {
+            max-width: 32px;
+            padding: 16px 0;
         }
     }
     &__user-wrap {
@@ -87,6 +100,10 @@ body {
         font-size: 20px;
         border-radius: 5px;
         padding: 10px;
+        @media (max-width: 767px) {
+            min-width: 210px;
+            font-size: 15px;
+        }
     }
     &__avatar-wrap {
         width: 150px;
@@ -97,20 +114,27 @@ body {
         display: block;
         margin-left: auto;
         margin-right: auto;
+        @media (max-width: 767px) {
+            width: 130px;
+            height: 130px;
+        }
     }
     &__avatar {
         width: 100%;
         height: 100%;
         object-fit: cover;
     }
-
 }
 .text {
     text-align: center;
     margin-bottom: 30px;
     font-family: 'Lily Script One', cursive;
-    font-size: 40px;
+    font-size: 60px;
     line-height: 75px;
+    @media (max-width: 767px) {
+        font-size: 40px;
+        margin-bottom: 20px;
+    }
 }
 .tasks {
     max-width: 750px;
@@ -122,8 +146,10 @@ body {
     border: 1px solid rgb(238, 232, 232);
     background-color: rgba(235, 229, 229, 0.55);
     border-radius: 15px;
-
-
+    @media (max-width: 767px) {
+        max-width: 500px;
+        padding: 20px 0;
+    }
     &__wrap {
         width: 100%;
         margin-bottom: 20px;
@@ -141,6 +167,11 @@ body {
         font-size: 18px;
         border: 1px solid rgb(255, 255, 255);
         border-radius: 5px;
+        @media (max-width: 767px) {
+            max-width: 350px;
+            font-size: 16px;
+            padding: 8px;
+        }
     }
     &__btn {
         height: 100%;
@@ -163,12 +194,22 @@ body {
         &:active {
             background-color: rgb(203, 153, 153);
         }
+        @media (max-width: 767px) {
+            max-width: 80px;
+            font-size: 16px;
+        }
     }
-    &__buttons {
+    &__filter-mobile {
+        display: none;
+    }
+    &__filter-buttons {
         margin-bottom: 30px;
         display: flex;
         justify-content: space-between;
         align-items: center;
+        @media (max-width: 767px) {
+            display: none;
+        }
     }
     &__filter-btn {
         height: 100%;
@@ -211,10 +252,13 @@ body {
         padding: 5px 10px;
         border-radius: 5px;
         background-color: rgba(255, 255, 255, 0.5);
+        @media (max-width: 767px) {
+            line-height: 20px;
+            margin-bottom: 12px;
+            font-size: 16px;
+        }
     }
     &__checkbox {
-        margin-right: 15px;
-        cursor: pointer;
         position: absolute;
         z-index: -1;
         opacity: 0;
@@ -222,10 +266,27 @@ body {
     &__label {
         flex: 1 1 0;
         margin-right: 10px;
+        display: flex;
+        justify-content: flex-start;
+        align-items: center;
+        cursor: pointer;
     }
-    &__desc {
-        max-width: 400px;
-        width: 100%;
+    &__div-checkbox {
+        position: relative;
+        width: 20px;
+        height: 20px;
+        border: 2px solid rgb(0, 0, 0);
+        border-radius: 5px;
+        margin-right: 10px;
+        cursor: pointer;
+        @media (max-width: 767px) {
+            width: 15px;
+            height: 15px;
+        }
+    }
+    &__label input:checked ~ &__div-checkbox {
+        background: url(../media/mark.png) 100% 100% no-repeat;
+        background-size: contain;
     }
     &__date {
         flex: 1 1 0;
@@ -236,6 +297,7 @@ body {
         border: none;
         cursor: pointer;
         background: none;
+        color: rgb(0, 0, 0);
         font-weight: 600;
         font-size: 15px;
         font-family: 'Lily Script One', cursive;

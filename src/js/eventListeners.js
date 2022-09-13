@@ -1,7 +1,6 @@
 import { input, addBtn, list, changeBtn, filterNew, filterOld, filterCompleted, filterUncompleted } from './nodes.js';
 import { todos } from './initialRender.js';
 import { createToDo } from './toDoCreators.js';
-// import { flickr } from './flickrAPI.js';
 
 export function eventListeners() {
     input.addEventListener ('input', (event) => {
@@ -48,50 +47,11 @@ export function eventListeners() {
             default: break;
         }
     });
-
+    let id = 0;
     changeBtn.addEventListener('click', () => {
-        const flickr = {
-            key: '3352b173d96c26bb29a0f24c4ce50065',
-            url: 'https://www.flickr.com/',
-            getRequestUrl(tags) {
-                return `${this.url}/services/rest/?method=flickr.photos.search&api_key=${this.key}&tags=${tags}&tag_mode=all&extras=url_h&format=json&nojsoncallback=1`;
-            },
-        };
-        const time = new Date();
-        time.getHours;
-        let tags;
-        if (time[0] <= 5) {
-            tags = 'night, stars, moon, summer';
-        } else if (time[0] > 5 && time[0] <= 11) {
-            tags = 'morning, sun, alarm';
-        } else if (time[0] > 11 && time[0] <= 18) {
-            tags = 'day, mountains';
-        } else {
-            tags = 'evening, sunset';
-        };
-        fetch(flickr.getRequestUrl(tags))
-            .then(response => {
-                if (response.ok && response.status === 200) {
-                    return response.json();
-                } else {
-                    return document.body.style.background = 'pink';
-                };
-            })
-            .then(data => {
-                console.log(data);
-                const { photo: images } = data.photos;
-                console.log(images);
-                let id = 0;
-                const img = new Image();
-                img.src = images[id].url_h;
-                img.addEventListener('load', () => {
-                    document.body.style.backgroundImage = `url('${images[id].url_h}')`;
-                });
-                img.addEventListener('error', () => {
-                    document.body.style.background = `pink`;
-                });
-                id++;
-            });
+        const images = JSON.parse(localStorage.getItem('images')) || [] ;
+        document.body.style.backgroundImage = `url('${images[id].url_h}')`;
+        id = (id + 1 + images.length) % images.length;
     });
 
     filterNew.addEventListener('click', () => {
