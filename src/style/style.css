@@ -212,42 +212,40 @@ body {
 .tasks__wrap {
   width: 100%;
   margin-bottom: 20px;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-pack: justify;
-      -ms-flex-pack: justify;
-          justify-content: space-between;
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: 3fr 1fr;
+      grid-template-columns: 3fr 1fr;
+  grid-column-gap: 15px;
+}
+
+@media (max-width: 767px) {
+  .tasks__wrap {
+    margin-bottom: 10px;
+    grid-column-gap: 10px;
+  }
 }
 
 .tasks__input {
-  width: 100%;
-  max-width: 500px;
-  padding: 10px;
+  padding: 13px;
   line-height: 20px;
   outline: none;
   font-family: 'Ibarra Real Nova', serif;
   font-weight: 600;
   font-size: 18px;
-  border: 1px solid white;
+  border: none;
   border-radius: 5px;
 }
 
 @media (max-width: 767px) {
   .tasks__input {
-    max-width: 350px;
     font-size: 16px;
-    padding: 8px;
   }
 }
 
 .tasks__btn {
-  height: 100%;
-  width: 100%;
-  max-width: 190px;
-  width: 100%;
   line-height: 15px;
-  padding: 17px 0;
+  padding: 15px 0;
   background-color: white;
   border: none;
   border-radius: 5px;
@@ -269,38 +267,32 @@ body {
 
 @media (max-width: 767px) {
   .tasks__btn {
-    max-width: 80px;
     font-size: 16px;
   }
 }
 
-.tasks__filter-mobile {
-  display: none;
-}
-
 .tasks__filter-buttons {
   margin-bottom: 30px;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-pack: justify;
-      -ms-flex-pack: justify;
-          justify-content: space-between;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: (1fr)[4];
+      grid-template-columns: repeat(4, 1fr);
+  grid-column-gap: 10px;
 }
 
 @media (max-width: 767px) {
   .tasks__filter-buttons {
-    display: none;
+    margin-bottom: 20px;
+    -ms-grid-columns: (1fr)[2];
+        grid-template-columns: repeat(2, 1fr);
+    grid-column-gap: 5px;
+    grid-row-gap: 5px;
   }
 }
 
 .tasks__filter-btn {
   height: 100%;
   width: 100%;
-  max-width: 165px;
   line-height: 15px;
   padding: 14px 0;
   background-color: white;
@@ -320,6 +312,13 @@ body {
 
 .tasks__filter-btn:active {
   background-color: #cb9999;
+}
+
+@media (max-width: 767px) {
+  .tasks__filter-btn {
+    padding: 10px 0;
+    font-size: 12px;
+  }
 }
 
 .tasks__list {

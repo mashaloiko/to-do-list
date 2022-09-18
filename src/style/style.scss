@@ -153,33 +153,30 @@ body {
     &__wrap {
         width: 100%;
         margin-bottom: 20px;
-        display: flex;
-        justify-content: space-between;
+        display: grid;
+        grid-template-columns: 3fr 1fr;
+        grid-column-gap: 15px;
+        @media (max-width: 767px) {
+            margin-bottom: 10px;
+            grid-column-gap: 10px;
+        }
     }
     &__input {
-        width: 100%;
-        max-width: 500px;
-        padding: 10px;
+        padding: 13px;
         line-height: 20px;
         outline: none;
         font-family: 'Ibarra Real Nova', serif;
         font-weight: 600;
         font-size: 18px;
-        border: 1px solid rgb(255, 255, 255);
+        border: none;
         border-radius: 5px;
         @media (max-width: 767px) {
-            max-width: 350px;
             font-size: 16px;
-            padding: 8px;
         }
     }
     &__btn {
-        height: 100%;
-        width: 100%;
-        max-width: 190px;
-        width: 100%;
         line-height: 15px;
-        padding: 17px 0;
+        padding: 15px 0;
         background-color: rgb(255, 255, 255);
         border: none;
         border-radius: 5px;
@@ -195,26 +192,24 @@ body {
             background-color: rgb(203, 153, 153);
         }
         @media (max-width: 767px) {
-            max-width: 80px;
             font-size: 16px;
         }
     }
-    &__filter-mobile {
-        display: none;
-    }
     &__filter-buttons {
         margin-bottom: 30px;
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        grid-column-gap: 10px;
         @media (max-width: 767px) {
-            display: none;
+            margin-bottom: 20px;
+            grid-template-columns: repeat(2, 1fr);
+            grid-column-gap: 5px;
+            grid-row-gap: 5px;
         }
     }
     &__filter-btn {
         height: 100%;
         width: 100%;
-        max-width: 165px;
         line-height: 15px;
         padding: 14px 0;
         background-color: rgb(255, 255, 255);
@@ -230,6 +225,10 @@ body {
         }
         &:active {
             background-color: rgb(203, 153, 153);
+        }
+        @media (max-width: 767px) {
+            padding: 10px 0;
+            font-size: 12px;
         }
     }
     &__list {
